@@ -114,6 +114,10 @@ def get_data_files(name, version, fullname):
         set_bin_files(data_files, dest="/usr/local/sbin")
         set_conf_files(data_files, src=["config/freebsd/waagent.conf"])
         set_rc_files(data_files)
+    elif name == 'archlinux':
+        set_bin_files(data_files, dest="/usr/bin")
+        set_conf_files(data_files, src=["config/archlinux/waagent.conf"])
+        set_systemd_files(data_files, src=["init/archlinux/waagent.service"], dest='/usr/lib/systemd/system')
     else:
         #Use default setting
         set_bin_files(data_files)

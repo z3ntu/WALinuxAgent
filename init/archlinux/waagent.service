@@ -1,0 +1,14 @@
+[Unit]
+Description=Azure Linux Agent
+After=network.target
+After=sshd.service
+ConditionFileIsExecutable=/usr/bin/waagent
+ConditionPathExists=/etc/waagent.conf
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/waagent -daemon
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
