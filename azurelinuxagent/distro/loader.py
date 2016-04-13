@@ -29,6 +29,7 @@ from azurelinuxagent.distro.coreos.distro import CoreOSDistro
 from azurelinuxagent.distro.suse.distro import SUSE11Distro, SUSEDistro
 from azurelinuxagent.distro.debian.distro import DebianDistro
 from azurelinuxagent.distro.freebsd.distro import FreeBSDDistro
+from azurelinuxagent.distro.archlinux.distro import ArchLinuxDistro
 
 def get_distro(distro_name=DISTRO_NAME, distro_version=DISTRO_VERSION,
                distro_full_name=DISTRO_FULL_NAME):
@@ -63,6 +64,8 @@ def get_distro(distro_name=DISTRO_NAME, distro_version=DISTRO_VERSION,
             return RedhatDistro()
     elif distro_name == "freebsd":
         return FreeBSDDistro()
+    elif distro_name == "archlinux":
+        return ArchLinuxDistro()
     else:
         logger.warn("Unable to load distro implemetation for {0}.", distro_name)
         logger.warn("Use default distro implemetation instead.")
