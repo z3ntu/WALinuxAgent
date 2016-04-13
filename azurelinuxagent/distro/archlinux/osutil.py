@@ -33,7 +33,7 @@ from azurelinuxagent.metadata import DISTRO_NAME, DISTRO_VERSION, DISTRO_FULL_NA
 from azurelinuxagent.distro.default.osutil import DefaultOSUtil
 
 
-class ArchLinuxOSUtil(SUSE11OSUtil):
+class ArchLinuxOSUtil(ArchLinuxOSUtil):
     def __init__(self):
         super(ArchLinuxOSUtil, self).__init__()
         self.dhclient_name = 'dhcpcd'
