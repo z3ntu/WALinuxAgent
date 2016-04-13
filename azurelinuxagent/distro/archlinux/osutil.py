@@ -36,7 +36,18 @@ from azurelinuxagent.distro.default.osutil import DefaultOSUtil
 class ArchLinuxOSUtil(ArchLinuxOSUtil):
     def __init__(self):
         super(ArchLinuxOSUtil, self).__init__()
-        self.dhclient_name = 'dhcpcd'
+        self.dhclient_name='dhcpcd'
+
+    def set_hostname(self, hostname):
+        fileutil.write_file('/etc/hostname', hostname)
+        shellutil.run("hostname {0}".format(hostname), chk_err=False)
+
+    def get_dhcp_pid(self):
+        ret= shellutil.run_get_output("pidof {0}".format(self.dhclient_name))
+        return ret[1] if ret[0] == 0 else None
+
+    def is_dhcp_enabled(self):
+        return True
 
     def stop_dhcp_service(self):
         cmd = "systemctl stop {0}".format(self.dhclient_name)
