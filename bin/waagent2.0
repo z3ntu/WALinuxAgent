@@ -4723,12 +4723,14 @@ class OvfEnv(object):
         error=WaAgent.EnvMonitor.SetHostName(self.ComputerName)
         if error: return error
         if self.DisableSshPasswordAuthentication:
-            filepath = "/etc/ssh/sshd_config"
+            Log("no ssh disable thingy")
+            # TODO: Reenable
+            #filepath = "/etc/ssh/sshd_config"
             # Disable RFC 4252 and RFC 4256 authentication schemes.
-            ReplaceFileContentsAtomic(filepath, "\n".join(filter(lambda a: not
-                (a.startswith("PasswordAuthentication") or a.startswith("ChallengeResponseAuthentication")),
-                GetFileContents(filepath).split('\n'))) + "\nPasswordAuthentication no\nChallengeResponseAuthentication no\n")
-            Log("Disabled SSH password-based authentication methods.")
+            #ReplaceFileContentsAtomic(filepath, "\n".join(filter(lambda a: not
+            #    (a.startswith("PasswordAuthentication") or a.startswith("ChallengeResponseAuthentication")),
+            #    GetFileContents(filepath).split('\n'))) + "\nPasswordAuthentication no\nChallengeResponseAuthentication no\n")
+            #Log("Disabled SSH password-based authentication methods.")
         if self.AdminPassword != None:
             MyDistro.changePass('root',self.AdminPassword)
         if self.UserName != None:
