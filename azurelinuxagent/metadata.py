@@ -41,6 +41,9 @@ def get_distro():
         osinfo[2] = "oracle"
         osinfo[3] = "Oracle Linux"
 
+    if osinfo[0] == "arch":
+        osinfo[0] = "archlinux"
+
     #Remove trailing whitespace and quote in distro name
     osinfo[0] = osinfo[0].strip('"').strip(' ').lower()
     return osinfo
