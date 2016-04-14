@@ -381,7 +381,7 @@ class ExtHandlerInstance(object):
         package = None
         self.logger.info("PACKAGE URIS")
         for uri in self.pkg.uris:
-            self.logger.info(uri)
+            self.logger.info(uri.uri)
             try:
                 package = self.protocol.download_ext_handler_pkg(uri.uri)
             except ProtocolError as e: 
